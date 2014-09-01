@@ -42,15 +42,16 @@ int main(int argc, char* argv[]){
     u(i) = (f(i) - a*u(i+1))/bv(i);
   }
   
-  
-  for(int i=0;i<(n+2);i++){
-    sol(i) = 1 - (1 - exp(-10))*i*h - exp(-10*i*h);
-  }
+  cout<< max(u)<<endl;
+  // for(int i=0;i<(n+2);i++){
+  //   sol(i) = 1 - (1 - exp(-10))*i*h - exp(-10*i*h);
+  // }
 
 
-  cout << max(abs(u-sol))<<endl;
-  
-  
+  // // cout << max(abs(u-sol))<<endl;
+  // FILE *out;
+  // out = fopen("data.dat','w");
+  // u.save(out);
   
   return 0;
 }

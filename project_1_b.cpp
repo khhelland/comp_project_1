@@ -11,8 +11,8 @@ int main(int argc, char* argv[]){
   
   vec u = zeros<vec>(n+2);
   vec f = zeros<vec>(n+2);
-  vec ft = zeros<vec>(n);
-  vec bv = zeros<vec>(n);
+  //vec ft = zeros<vec>(n);
+  vec bv = zeros<vec>(n+2);
   
   
   double a = -1;
@@ -25,21 +25,21 @@ int main(int argc, char* argv[]){
   
   
   
-  for(i=0; i<(n+2); i++){f[i] = 100*exp(-10*i*h);}
+  for(int i=0; i<(n+2); i++){f(i) = 100*exp(-10*i*h);}
 
-  ft[0] = f[1];
+  //ft[0] = f[1];
 
-  for(i=0; i<n?;i++){
-    bv[i+1] -= ac/bv[i];
-    ft[i+1] = f[i+1] - a*ft[i]/bv[i];
+  for(int i=1; i<n;i++){
+    bv(i+1) -= ac/bv(i);
+    f(i+1) = f(i+1) - a*f(i)/bv(i);
   }
-    
+  
+  //u(n) = f(n)/bv(n-1);
+   
+  cout<<bv<<endl;
   
 
-  // for(int i = 0; i<=n; i++){
-  //   temp[i]= (double)i;
-  //   }
-  // cout<<(temp[n-2])<<endl;
+  
   return 0;
 }
   

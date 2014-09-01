@@ -7,21 +7,22 @@ using namespace std;
 using namespace arma;
 
 int main(int argc, char* argv[]){
+  
   int n = atoi(argv[1]); 
   
   vec u = zeros<vec>(n+2);
   vec f = zeros<vec>(n+2);
   vec bv = zeros<vec>(n+2);
   
-  vec sol = zeros<vec>(n+2);
-  
   double a = -1;
   double b = 2;
   double ac = 1;
   
+  double h = 1.0/(n+1);
+  
   bv.fill(b);
 
-  double h = 1.0/(n+1);
+  
   
   
   
@@ -42,16 +43,7 @@ int main(int argc, char* argv[]){
     u(i) = (f(i) - a*u(i+1))/bv(i);
   }
   
-  cout<< max(u)<<endl;
-  // for(int i=0;i<(n+2);i++){
-  //   sol(i) = 1 - (1 - exp(-10))*i*h - exp(-10*i*h);
-  // }
-
-
-  // // cout << max(abs(u-sol))<<endl;
-  // FILE *out;
-  // out = fopen("data.dat','w");
-  // u.save(out);
+  u.save("data.dat",raw_ascii);
   
   return 0;
 }

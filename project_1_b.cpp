@@ -25,18 +25,21 @@ int main(int argc, char* argv[]){
   
   
   
-  for(int i=0; i<(n+2); i++){f(i) = 100*exp(-10*i*h);}
+  for(int i=0; i<(n+2); i++){
+    f(i) = 100*exp(-10*i*h);
+  }
 
-  //ft[0] = f[1];
-
+  
   for(int i=1; i<n;i++){
     bv(i+1) -= ac/bv(i);
     f(i+1) = f(i+1) - a*f(i)/bv(i);
   }
   
-  //u(n) = f(n)/bv(n-1);
-   
-  cout<<bv<<endl;
+  u(n) = f(n)/bv(n-1);
+  
+  for(int i= (n-1); i>0 ; i--){
+    u(i) = (f(i) - c*u(i+1))/bv(i);
+  }
   
 
   

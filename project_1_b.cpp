@@ -31,7 +31,7 @@ int main(int argc, char* argv[]){
   
   for(int i=1; i<n; i++){
     bv(i+1) -= ac/bv(i);
-    f(i+1) = f(i+1) - a*f(i)/bv(i);
+    f(i+1)  -= a*f(i)/bv(i);
   }
   
   u(n) = f(n)/bv(n);
@@ -39,7 +39,6 @@ int main(int argc, char* argv[]){
   for(int i= (n-1); i>0 ; i--){
     u(i) = (f(i) - a*u(i+1))/bv(i);
   }
-  
   
   u.save("data.dat",raw_ascii);
   

@@ -23,7 +23,7 @@ int main(int argc, char* argv[]){
   bv.fill(b);
 
     
-  for(int i=0; i<(n+2); i++){
+  for(int i=1; i<(n+1); i++){
     f(i) = 100*exp(-10*i*h);
   }
 

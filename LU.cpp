@@ -12,13 +12,14 @@ int main(int argc, char* argv[]){
   
   mat A = zeros<mat>(n,n);
   vec f(n);
-  vec u(n);
+  
   
   double a = -1;
   double b = 2;
     
   double h = 1.0/(n+1);
   
+  //Filling  in the matrix
   A(0,0) = b;
   A(1,0) = a;
   
@@ -33,7 +34,7 @@ int main(int argc, char* argv[]){
     
       
     
-  for(int i=1; i<=n; i++){
+  for(int i=1; i<n; i++){
     f(i) = 100*exp(-10*i*h);
   }
 
@@ -41,6 +42,12 @@ int main(int argc, char* argv[]){
   
   
   //finn ut om lU-metoden
+  mat L, U, P;
+  
+  lu(L,U,P,A);
+  
+  vec y = solve(P.t()*L,f);
+  vec u = solve(U,y);
   
   u.save("data.dat",raw_ascii);
   

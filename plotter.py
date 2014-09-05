@@ -8,10 +8,13 @@ for i in range(1,6):
     Steps.append(10**i)
 
 errorfile = open('error.dat','w')
-timefile = open('time.dat','w')
+timefile = open('total_time.dat','w')
+
 
 errorfile.write('n & $\epsilon$\\\ \hline \n')
 timefile.write('my algorithm & LU and solve \\\ \hline \n')
+
+os.system('rm lu_time.dat myalg_time.dat')
 
 for steps in Steps:
     

@@ -47,14 +47,18 @@ int main(int argc, char* argv[])
   f = f*pow(h,2);
     
   clock_t start, mid, end;
+  
+  //starting time including LU-decomposition
   start = clock();
 
   mat L, U, P;
   
   lu(L,U,P,A);
   
+  //Time excluding decomposition
   mid = clock();
 
+  //Solving equations in two steps
   vec y = solve(P.t()*L,f);
   vec u = solve(U,y);
   

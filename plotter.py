@@ -9,10 +9,11 @@ for i in range(1,6):
 
 errorfile = open('error.dat','w')
 timefile = open('total_time.dat','w')
+lufile = open('lu_err.dat','w')
 
-
-errorfile.write('n & $\epsilon$\\\ \hline \n')
+errorfile.write('n & $\epsilon_i$\\\ \hline \n')
 timefile.write('my algorithm & LU and solve \\\ \hline \n')
+lufile.write('n & $\epsilon_i$ \\\ \hline \n')
 
 os.system('rm lu_time.dat myalg_time.dat')
 
@@ -38,18 +39,19 @@ for steps in Steps:
     
     errorfile.write(' '.join((str(steps),'&',str(eps),'\\\ \hline \n')))
     
-    
-    #Plot data against analytical solution
-    
-    plt.figure()
-    plt.plot(x_vec,ansol,'-',x_sim,sim,'-')
-    plt.legend(('analytical solution','simulation'))
-    plt.xlabel('x')
-    plt.ylabel('u')
-    plt.savefig('ansol_sim_n_%g.png' %steps)
-
-    #Time my algorithm against LU-decomposition
     if steps <= 1000:
+        
+        #Plot data against analytical solution
+    
+        plt.figure()
+        plt.plot(x_vec,ansol,'-',x_sim,sim,'-')
+        plt.legend(('analytical solution','simulation'))
+        plt.xlabel('x')
+        plt.ylabel('u')
+        plt.savefig('ansol_sim_n_%g.png' %steps)
+
+        #Compare my algorithm against LU-decomposition
+    
         start_2 = time.clock()
         os.system(' '.join(('./LU.x',str(steps))))
         end_2 = time.clock()
@@ -57,3 +59,10 @@ for steps in Steps:
         time_1 = end_1 - start_1
         time_2 = end_2 - start_2
         timefile.write(' '.join((str(time_1),str(time_2),'\\\ \hline \n')))
+        
+        lu_sim = np.loadtxt('LU.dat')
+        eps = np.max(np.log10(abs((lu_sim-sim[1:-1]))/lu_sim))
+        
+        lufile.write(' '.join((str(steps),'&',str(eps),'\\\ \hline \n')))
+        
+        

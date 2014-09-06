@@ -39,15 +39,13 @@ int main(int argc, char* argv[])
   A(n-1,n-1) = b;
     
       
-    
-  for(int i=1; i<n; i++)
+  for(int i=0; i<n; i++)
   {
-    f(i) = 100*exp(-10*i*h);
+    f(i) = 100*exp(-10*(i+1)*h);
   }
 
   f = f*pow(h,2);
-  
-  
+    
   clock_t start, mid, end;
   start = clock();
 
@@ -62,7 +60,7 @@ int main(int argc, char* argv[])
   
   end = clock();
 
-  u.save("data.dat",raw_ascii);
+  u.save("LU.dat",raw_ascii);
   
   double lu_time = (end - start)/(double)CLOCKS_PER_SEC;
   double solve_time = (end - mid)/(double)CLOCKS_PER_SEC;

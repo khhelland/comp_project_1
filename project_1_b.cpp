@@ -31,7 +31,7 @@ int main(int argc, char* argv[])
   }
 
   f = f*pow(h,2);
-  
+ 
   clock_t  start, end;
   
   start = clock();
